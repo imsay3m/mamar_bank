@@ -105,7 +105,7 @@ class LoanRequestView(TransactionViewMixin):
         if current_loan_count>=3:
             return HttpResponse("You have exceeded your limits")
         
-        messages.warning(self.request,f"Loan request for {"{:,.2f}".format(float(amount))}$ submitted successfully")
+        messages.warning(self.request,f"Loan request for {amount}$ submitted successfully")
         # send_transaction_mail(self.request.user,amount,"Loan Request Message",'transactions/loan_mail.html')
         return super().form_valid(form)
 
