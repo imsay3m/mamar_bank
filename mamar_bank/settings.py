@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
+import dj_database_url
 import environ
 env = environ.Env()
 environ.Env.read_env()
@@ -86,7 +87,7 @@ WSGI_APPLICATION = "mamar_bank.wsgi.application"
     }
 } """
 
-DATABASES = {
+""" DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": env("DB_NAME"),
@@ -95,6 +96,15 @@ DATABASES = {
         "HOST": env("DB_HOST"),
         "PORT": env("DB_PORT"),
     }
+} """
+
+# Database
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
+DATABASES = {
+    'default': dj_database_url.config(
+        default='postgres://mamar_bank_388p_user:tvGmZQCvKrHJJGBYX8lmugZZ8tCpc0hm@dpg-cmkf90q1hbls73a0pltg-a.oregon-postgres.render.com/mamar_bank_388p',
+    )
 }
 
 
