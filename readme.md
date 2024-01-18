@@ -103,3 +103,6 @@
             }<br>
         }<br>
         </code>
+
+16. 
+    - Installed Packages <code>pip freeze > requirements.txt</code>
