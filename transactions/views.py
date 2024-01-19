@@ -69,7 +69,7 @@ class DepositMoneyView(TransactionViewMixin):
         send_email=EmailMultiAlternatives(mail_subject,'',to=[to_email])
         send_email.attach_alternative(message,"text/html")
         send_email.send() """
-        # send_transaction_mail(self.request.user,amount,"Deposit Message",'transactions/deposit_email.html')
+        send_transaction_mail(self.request.user,amount,"Deposit Message",'transactions/deposit_email.html')
         return super().form_valid(form)
     
 class WithdrawMoneyView(TransactionViewMixin):
@@ -88,7 +88,7 @@ class WithdrawMoneyView(TransactionViewMixin):
             update_fields=['balance']
         )
         messages.warning(self.request,f"{amount}$ was withdrawn from your account successfully")
-        # send_transaction_mail(self.request.user,amount,"Withdrawal Message",'transactions/withdrawal_mail.html')
+        send_transaction_mail(self.request.user,amount,"Withdrawal Message",'transactions/withdrawal_mail.html')
         return super().form_valid(form)
     
 class LoanRequestView(TransactionViewMixin):
@@ -106,7 +106,7 @@ class LoanRequestView(TransactionViewMixin):
             return HttpResponse("You have exceeded your limits")
         
         messages.warning(self.request,f"Loan request for {amount}$ submitted successfully")
-        # send_transaction_mail(self.request.user,amount,"Loan Request Message",'transactions/loan_mail.html')
+        send_transaction_mail(self.request.user,amount,"Loan Request Message",'transactions/loan_mail.html')
         return super().form_valid(form)
 
 
